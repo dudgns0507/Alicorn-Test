@@ -7,7 +7,8 @@ data class UserData(
     val email: String,
     val name: String,
     val job: String,
-    val company: String
+    val company: String,
+    val profile: String
 ) {
     companion object {
         var id = 0
@@ -22,7 +23,8 @@ data class UserData(
                 email = emailList[Random.nextInt(emailList.size)],
                 name = nameList[Random.nextInt(nameList.size)],
                 job = jobList[Random.nextInt(jobList.size)],
-                company = "로켓펀치"
+                company = "로켓펀치",
+                profile = ""
             )
         }
     }

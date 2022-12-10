@@ -13,10 +13,11 @@ data  class ChatData(
 
         fun getSampleData(): ChatData {
             id += 1
+            val user = UserData.getSampleData()
             return ChatData(
                 id = id,
-                user = UserData.getSampleData(),
-                lastMessage = MessageData.getSampleData(),
+                user = user,
+                lastMessage = MessageData.getSampleData(user),
                 unreadMessageCount = Random.nextInt(2)
             )
         }
