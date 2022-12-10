@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rect_round8"
+            android:clipToOutline="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/round_account_circle_24" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Heading16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintLeft_toRightOf="@id/iv_profile"
+            app:layout_constraintRight_toLeftOf="@id/tv_date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="박영훈" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/Body12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintLeft_toRightOf="@id/iv_profile"
+            app:layout_constraintRight_toLeftOf="@id/tv_date"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="안드로이드 개발자 @로켓펀치" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            style="@style/Body14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintLeft_toRightOf="@id/iv_profile"
+            app:layout_constraintRight_toLeftOf="@id/tv_date"
+            app:layout_constraintTop_toBottomOf="@id/tv_info"
+            tools:text="안녕하세요. 박영훈입니다. 잘 지내셨나요?" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/Body14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/gray_80"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="어제" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/gray_60"
+            app:layout_constraintLeft_toRightOf="@id/iv_profile"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

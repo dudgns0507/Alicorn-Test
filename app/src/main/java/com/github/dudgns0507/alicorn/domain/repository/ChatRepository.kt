@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ChatRepository {
     suspend fun requestChats(): Flow<ApiResult<List<ChatData>>>
+
+    suspend fun requestChat(id: Int): Flow<ApiResult<ChatData>>
 }

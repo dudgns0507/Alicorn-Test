@@ -10,6 +10,8 @@ import com.github.dudgns0507.alicorn.core.ItemClickListener
 import com.github.dudgns0507.alicorn.core.observe
 import com.github.dudgns0507.alicorn.databinding.ActivityMainBinding
 import com.github.dudgns0507.alicorn.presentation.adapter.ChatAdapter
+import com.github.dudgns0507.alicorn.presentation.view.chat.ChatActivity
+import com.github.dudgns0507.alicorn.presentation.view.chat.ChatBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +21,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val vm: MainViewModel by viewModels()
 
     private val chatAdapter = ChatAdapter().apply {
-        listener = ItemClickListener {  }
+        listener = ItemClickListener { position ->
+            val item = getItem(position)
+            startActivity(ChatActivity.callingIntent(this@MainActivity, ChatBundle(item.id)))
+        }
     }
 
     companion object {

@@ -17,8 +17,8 @@ class ChatViewHolder(
             Glide.with(ctx).load(item.user.profile).into(ivProfile)
 
         tvName.text = item.user.name
-        tvInfo.text = "${item.user.job} @${item.user.company}"
-        tvMessage.text = item.lastMessage.message
-        tvDate.text = item.lastMessage.date.getDateString()
+        tvInfo.text = item.user.getInfo()
+        tvMessage.text = item.getLastMessage().message
+        tvDate.text = item.getLastMessage().date.getDateString()
     }
 }

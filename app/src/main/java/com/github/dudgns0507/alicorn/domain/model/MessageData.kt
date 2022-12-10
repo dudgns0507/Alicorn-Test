@@ -9,7 +9,8 @@ data class MessageData(
     val date: String,
     val time: String,
     val isRead: Boolean,
-    val user: UserData
+    val user: UserData,
+    val isCurrentUser: Boolean = false
 ) {
     companion object {
         var id = 0

@@ -10,6 +10,10 @@ data class UserData(
     val company: String,
     val profile: String
 ) {
+    fun getInfo(): String {
+        return "$job @${company}"
+    }
+
     companion object {
         var id = 0
         private val nameList = listOf("박영훈", "홍길동")

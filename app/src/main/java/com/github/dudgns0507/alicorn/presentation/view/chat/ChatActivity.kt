@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Build
 import android.os.Parcelable
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dudgns0507.alicorn.R
 import com.github.dudgns0507.alicorn.core.BaseActivity
+import com.github.dudgns0507.alicorn.core.observe
 import com.github.dudgns0507.alicorn.databinding.ActivityChatBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.parcelize.Parcelize
@@ -43,16 +45,27 @@ class ChatActivity : BaseActivity<ActivityChatBinding, ChatViewModel>() {
     }
 
     override fun initBinding(): Unit = with(binding) {
-
+        rvMessage.apply {
+            layoutManager = LinearLayoutManager(this@ChatActivity)
+        }
     }
 
     override fun initListener(): Unit = with(binding) {
-
+        ivClose.setOnClickListener { onBackPressed() }
     }
 
     override fun initObserve(): Unit = with(vm) {
-
+        observe(chat) { chat ->
+            chat?.let {
+                binding.tvName.text = it.user.name
+                binding.tvInfo.text = it.user.getInfo()
+            }
+        }
     }
 
-    override fun afterBinding() = Unit
+    override fun afterBinding() {
+        bundle?.let {
+            vm.getChats(it.id)
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.github.dudgns0507.alicorn.di
 
 import com.github.dudgns0507.alicorn.domain.repository.ChatRepository
+import com.github.dudgns0507.alicorn.domain.usecase.GetChatUseCase
 import com.github.dudgns0507.alicorn.domain.usecase.GetChatsUseCase
 import dagger.Module
 import dagger.Provides
@@ -17,5 +18,13 @@ object UseCaseModule {
         repository: ChatRepository
     ): GetChatsUseCase {
         return GetChatsUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetChatUseCase(
+        repository: ChatRepository
+    ): GetChatUseCase {
+        return GetChatUseCase(repository)
     }
 }
