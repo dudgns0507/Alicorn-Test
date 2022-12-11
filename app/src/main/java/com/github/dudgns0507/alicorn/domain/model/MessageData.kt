@@ -12,7 +12,13 @@ data class MessageData(
     val isCurrentUser: Boolean = false
 ) {
     companion object {
-        private val messageList = listOf("안녕하세요.", "반갑습니다.", "메시지 테스트.")
+        private val messageList = listOf(
+            "안녕하세요.",
+            "반갑습니다.",
+            "메시지 테스트.",
+            "URL 테스트 https://www.naver.com/",
+            "URL https://www.naver.com/ 테스트 입니다."
+        )
 
         fun getSampleData(user: UserData): MessageData {
             val date = Calendar.getInstance().get(Calendar.DATE)

@@ -15,6 +15,7 @@
             style="@style/Body14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autoLink="web"
             android:background="@drawable/rect_round8"
             android:backgroundTint="@color/gray_20"
             android:maxWidth="240dp"
@@ -33,6 +34,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_receive"
             tools:text="오전 10:23" />
+
+        <TextView
+            android:id="@+id/tv_read"
+            style="@style/Body12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/blue"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_date"
+            tools:text="1"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
