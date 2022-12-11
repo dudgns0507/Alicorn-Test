@@ -65,10 +65,40 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_40" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_send_message"
             android:layout_width="match_parent"
             android:layout_height="56dp">
+
+            <EditText
+                android:id="@+id/et_message"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:autofillHints="name"
+                android:background="@color/white"
+                android:hint="@string/hint_message"
+                android:imeOptions="actionSend"
+                android:inputType="textAutoComplete"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/iv_send" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:srcCompat="@drawable/fill_send_48"
+                app:tint="@color/blue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

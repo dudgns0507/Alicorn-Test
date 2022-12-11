@@ -2,15 +2,15 @@ package com.github.dudgns0507.alicorn.presentation.holder
 
 import com.github.dudgns0507.alicorn.core.BaseViewHolder
 import com.github.dudgns0507.alicorn.core.ItemClickListener
-import com.github.dudgns0507.alicorn.databinding.HolderMessageBinding
+import com.github.dudgns0507.alicorn.databinding.HolderUserMessageBinding
 import com.github.dudgns0507.alicorn.presentation.adapter.MessageType
 
-class MessageViewHolder(
-    private val binding: HolderMessageBinding,
+class UserMessageViewHolder(
+    private val binding: HolderUserMessageBinding,
     private val listener: ItemClickListener? = null
-) : BaseViewHolder<HolderMessageBinding>(binding, listener) {
-    fun bind(position: Int, item: MessageType.Receive) = with(binding) {
-        tvReceive.text = item.message.message
+) : BaseViewHolder<HolderUserMessageBinding>(binding, listener) {
+    fun bind(position: Int, item: MessageType.Send) = with(binding) {
+        tvSend.text = item.message.message
         tvDate.text = item.message.time
     }
 }

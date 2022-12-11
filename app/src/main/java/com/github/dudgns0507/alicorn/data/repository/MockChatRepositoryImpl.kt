@@ -1,19 +1,21 @@
 package com.github.dudgns0507.alicorn.data.repository
 
+import com.github.dudgns0507.alicorn.Constant.currentUser
 import com.github.dudgns0507.alicorn.core.ApiResult
 import com.github.dudgns0507.alicorn.domain.model.ChatData
-import com.github.dudgns0507.alicorn.domain.model.UserData
+import com.github.dudgns0507.alicorn.domain.model.MessageData
 import com.github.dudgns0507.alicorn.domain.repository.ChatRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class MockChatRepositoryImpl(
     private val dispatcher: CoroutineDispatcher
 ) : ChatRepository {
-    private val currentUser = UserData.getSampleData()
     private var chats = listOf(
         ChatData.getSampleData(),
         ChatData.getSampleData(),
@@ -21,18 +23,9 @@ class MockChatRepositoryImpl(
         ChatData.getSampleData()
     ).sortedByDescending { it.getLastMessage().date }
 
-    private fun checkCurrentUserMessage() {
-        chats = chats.map {
-            it.copy(messages = it.messages.map { message ->
-                message.copy(isCurrentUser = it.user.id == currentUser.id)
-            })
-        }
-    }
-
     override suspend fun requestChats(): Flow<ApiResult<List<ChatData>>> = withContext(dispatcher) {
         return@withContext flow {
             emit(ApiResult.Loading())
-            checkCurrentUserMessage()
 
             delay(1000L)
 
@@ -43,7 +36,6 @@ class MockChatRepositoryImpl(
     override suspend fun requestChat(id: Int): Flow<ApiResult<ChatData>> = withContext(dispatcher) {
         return@withContext flow {
             emit(ApiResult.Loading())
-            checkCurrentUserMessage()
 
             delay(1000L)
 
@@ -53,6 +45,48 @@ class MockChatRepositoryImpl(
             } ?: kotlin.run {
                 emit(ApiResult.Failure(Exception("Chat data not found.")))
             }
+        }
+    }
+
+    override suspend fun receiveMessage(
+        chat: ChatData
+    ): Flow<ApiResult<MessageData>> = withContext(dispatcher) {
+        return@withContext flow {
+            for (i in 0..50) {
+                delay(5000L)
+                val date = Calendar.getInstance()
+                val data = MessageData(
+                    message = MessageData.getRandomMessage(),
+                    date = SimpleDateFormat("yyyy/MM/dd").format(date.time),
+                    time = SimpleDateFormat("HH:mm").format(date.time),
+                    isRead = false,
+                    user = chat.user,
+                    isCurrentUser = false
+                )
+
+                chats = chats.map {
+                    if (it.id == chat.id)
+                        it.copy(messages = it.messages + data)
+                    else
+                        it
+                }
+                emit(ApiResult.Success(data))
+            }
+        }
+    }
+
+    override suspend fun sendMessage(
+        chat: ChatData,
+        message: MessageData
+    ): Flow<ApiResult<MessageData>> = withContext(dispatcher) {
+        return@withContext flow {
+            chats = chats.map {
+                if (it.id == chat.id)
+                    it.copy(messages = it.messages + message)
+                else
+                    it
+            }
+            emit(ApiResult.Success(message))
         }
     }
 }
