@@ -61,7 +61,9 @@ class ChatViewModel @Inject constructor(
         receiveMessageUseCase(chat).collect { result ->
             when (result) {
                 is ApiResult.Success -> {
-                    _messages.value = _messages.value + result.data
+                    _messages.value = _messages.value.map {
+                        it.copy(isRead = true)
+                    } + result.data
                 }
 
                 is ApiResult.Failure -> {}

@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="8dp"
+            android:text="@string/read_state"
             android:textColor="@color/blue"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

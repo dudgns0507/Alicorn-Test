@@ -25,7 +25,7 @@ data class UserData(
             return UserData(
                 id = id,
                 email = emailList[Random.nextInt(emailList.size)],
-                name = nameList[Random.nextInt(nameList.size)],
+                name = nameList[Random.nextInt(nameList.size)] + id,
                 job = jobList[Random.nextInt(jobList.size)],
                 company = "로켓펀치",
                 profile = ""

@@ -2,4 +2,5 @@
     <string name="app_name">Alicorn</string>
     <string name="title_message">메시지</string>
     <string name="hint_message">메시지 입력</string>
+    <string name="read_state">1</string>
 </resources>
