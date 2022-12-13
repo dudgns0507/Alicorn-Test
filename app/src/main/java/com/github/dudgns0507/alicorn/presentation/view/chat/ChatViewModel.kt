@@ -74,6 +74,9 @@ class ChatViewModel @Inject constructor(
     }
 
     fun sendMessage(message: String) = viewModelScope.launch {
+        if(message.isEmpty())
+            return@launch
+
         val date = Calendar.getInstance()
         val data = MessageData(
             message = message,
